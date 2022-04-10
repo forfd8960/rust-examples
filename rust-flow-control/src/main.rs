@@ -1,4 +1,4 @@
-fn fib_loop(n: u32)  {
+fn fib_loop(n: u32) {
     let mut a = 1;
     let mut b = 1;
     let mut i = 2u32;
@@ -23,7 +23,7 @@ fn fib_while(n: u32) {
         b = c;
         println!("next val is : {}", b);
 
-        i+=1;
+        i += 1;
     }
 }
 

@@ -32,6 +32,20 @@ enum Event {
     Message((UserId, TopicId, String)),
 }
 
+fn process_event(event: &Event) {
+    match event {
+        Event::Join((uid, _tid)) => println!("user: {:?} joined", uid),
+        Event::Leave((uid, tid)) => println!("user: {:?} left: {:?}", uid, tid),
+        Event::Message((_, _, msg)) => println!("broadcast {}", msg),
+    }
+}
+
+fn process_message(event: &Event) {
+    if let Event::Message((_, _, msg)) = event {
+        println!("broadcast {}", msg);
+    }
+}
+
 fn main() {
     let alice = User {
         id: UserId(1),
@@ -56,4 +70,9 @@ fn main() {
     println!("event1: {:?}", event1);
     println!("event2: {:?}", event2);
     println!("event3: {:?}", event3);
+
+    println!("process event using pattern match");
+    process_event(&event1);
+    process_event(&event3);
+    process_message(&event3);
 }
