@@ -28,7 +28,7 @@ struct Post {
     #[clap(parse(try_from_str = parse_url))]
     url: String,
     #[clap(parse(try_from_str = parse_kv_pair))]
-    body: Vec<String>,
+    body: Vec<KvPair>,
 }
 
 #[derive(Debug)]
