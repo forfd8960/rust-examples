@@ -1,6 +1,7 @@
 use base64::{decode_config, encode_config, URL_SAFE_NO_PAD};
 use std::convert::TryFrom;
 use photon_rs::transform::SamplingFilter;
+use prost::Message;
 
 // declare abi.rs
 mod abi;
@@ -20,16 +21,16 @@ impl From<&ImageSepc> for String {
 }
 
 impl TryFrom<&str> for ImageSepc {
-    type Err  = anyhow::Error;
+    type Error  = anyhow::Error;
 
-    fn try_from(value: &str) -> Result<Self, Self::Err> {
-        let data = decode_config(value, URL_SAFE_NO_PAD);
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        let data = decode_config(value, URL_SAFE_NO_PAD)?;
         Ok(ImageSepc::decode(&data[..])?)
     }
 }
 
 impl filter::Filter {
-    pub fn to_str(&self) -> Option<'static str> {
+    pub fn to_str(&self) -> Option<&'static str> {
         match self {
             filter::Filter::Unspecified => None,
             filter::Filter::Oceanic => Some("oceanic"),
@@ -40,7 +41,7 @@ impl filter::Filter {
 }
 
 impl From<resize::SampleFilter> for SamplingFilter {
-    fn from(v resize::SampleFilter) -> Self {
+    fn from(v: resize::SampleFilter) -> Self {
         match v {
             resize::SampleFilter::Undefined => SamplingFilter::Nearest,
             resize::SampleFilter::Nearest => SamplingFilter::Nearest,
