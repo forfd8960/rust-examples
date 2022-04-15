@@ -1,5 +1,7 @@
 use serde::Deserialize;
-use axum::{Router, routing::get};
+use axum::{Router, routing::get, extract::Path, http::StatusCode};
+use percent_encoding::percent_decode_str;
+use std::convert::TryInto;
 
 mod pb;
 use pb::*;
@@ -15,11 +17,21 @@ struct Params {
 async fn main() {
     tracing_subscriber::fmt::init();
     let app = Router::new()
-        .route("/image/:spec/:url", get());
+        .route("/image/:spec/:url", get(generate));
 
     let addr = "127.0.0.1:3000".parse().unwrap();
+    tracing::debug!("listen on: {}", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
+}
+
+async fn generate(Path( Params {spec, url}): Path<Params>) -> Result<String, StatusCode> {
+    let url = percent_decode_str(&url).decode_utf8_lossy();
+    let spec: ImageSepc = spec
+        .as_str()
+        .try_into()
+        .map_err(|_| StatusCode::BAD_REQUEST)?;
+    Ok(format!("url: {}\n spec: {:#?}", url, spec))
 }
