@@ -10,3 +10,12 @@ edition = "2021"
 [[bin]]
 name="compare_str"
 path="src/examples/compare_str.rs"
+
+
+[[bin]]
+name="first_word"
+path="src/examples/first_word.rs"
+
+[[bin]]
+name="strtok"
+path="src/examples/str_tok.rs"
