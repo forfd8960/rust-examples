@@ -11,3 +11,7 @@ regex = "1"
 [[bin]]
 name="parse"
 path="src/examples/parse.rs"
+
+[[bin]]
+name="generic_parse"
+path="src/examples/generic_parse.rs"
