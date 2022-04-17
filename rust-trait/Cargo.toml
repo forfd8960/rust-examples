@@ -19,3 +19,7 @@ path="src/examples/generic_parse.rs"
 [[bin]]
 name="generic_parse_err"
 path="src/examples/generic_parse_err.rs"
+
+[[bin]]
+name="add_complex"
+path="src/examples/add_complex.rs"

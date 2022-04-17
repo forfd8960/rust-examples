@@ -13,3 +13,11 @@ cargo run --bin generic_parse_err
      Running `target/debug/generic_parse_err`
 parse: 123.45abc result: Ok(123.45)
 ```
+
+```sh
+cargo run --bin add_complex
+   Compiling rust-trait v0.1.0
+    Finished dev [unoptimized + debuginfo] target(s) in 1.67s
+     Running `target/debug/add_complex`
+c1+c2: Complex { real: 3.0, img: 4.0 }
+```
