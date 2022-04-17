@@ -24,7 +24,7 @@ where
 #[test]
 fn test_genetic_parse() {
     assert_eq!(u32::parse("123abc"), 123);
-    assert_eq!(u32::parse("1234abcd"), 0);
+    assert_eq!(u32::parse("1234abcd"), 1234);
     assert_eq!(f64::parse("1988.66abc"), 1988.66);
     assert_eq!(f64::parse("2320.123abc"), 2320.123);
 }

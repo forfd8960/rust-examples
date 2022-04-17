@@ -15,3 +15,7 @@ path="src/examples/parse.rs"
 [[bin]]
 name="generic_parse"
 path="src/examples/generic_parse.rs"
+
+[[bin]]
+name="generic_parse_err"
+path="src/examples/generic_parse_err.rs"
