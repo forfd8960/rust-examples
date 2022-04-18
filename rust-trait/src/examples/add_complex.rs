@@ -12,6 +12,10 @@ impl Complex {
     }
 }
 
+/*
+----- 所以泛型 trait 可以让我们在需要的时候，对同一种类型的同一个 trait，有多个实现。 ----
+*/
+
 impl Add for Complex {
     type Output = Self;
 
