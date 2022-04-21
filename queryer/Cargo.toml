@@ -22,4 +22,6 @@ tokio = { version = "1", features = ["full"]}
 name="dialect"
 path="examples/dialect.rs"
 
-
+[[example]]
+name="coivd"
+path="examples/coivd.rs"
