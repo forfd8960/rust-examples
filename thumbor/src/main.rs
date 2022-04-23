@@ -27,6 +27,10 @@ use tracing::{info, instrument};
 mod pb;
 use pb::*;
 
+mod engine;
+use engine::{Engine, Photon};
+use image::ImageOutputFormat;
+
 #[derive(Deserialize)]
 struct Params {
     spec: String,
@@ -74,10 +78,15 @@ async fn generate(
         .await
         .map_err(|_| StatusCode::BAD_REQUEST)?;
 
+    let mut engine: Photon = data.try_into().map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    engine.apply(&spec.specs);
+    let image = engine.generate(ImageOutputFormat::Jpeg(85));
+    info!("finshed processing: image size: {}", image.len());
+
     let mut headers = HeaderMap::new();
     headers.insert("content-type", HeaderValue::from_static("image/jpeg"));
 
-   Ok((headers, data.to_vec()))
+   Ok((headers, image))
 }
 
 #[instrument(level="info", skip(cache))]
