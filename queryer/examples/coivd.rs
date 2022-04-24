@@ -15,7 +15,7 @@ async fn main() -> Result<()> {
     let filtered = df.filter(&df["new_cases"].gt(n))?;
     println!(
         "{:?}",
-        filtered.select([
+        filtered.select(vec![
             "location",
             "total_cases",
             "new_cases",
