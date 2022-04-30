@@ -55,3 +55,14 @@ serde = "1.0.136"
 to
 serde = { version = "1.0.136", features = ["derive"] }
 ```
+
+### cargo run --bin mutexguard
+
+```sh
+cargo run --bin mutexguard
+   Compiling lazy_static v1.4.0
+   Compiling rust-ds v0.1.0
+    Finished dev [unoptimized + debuginfo] target(s) in 1.75s
+     Running `target/debug/mutexguard`
+metrics: {"hello": 32}
+```
