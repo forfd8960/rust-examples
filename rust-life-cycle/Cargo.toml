@@ -19,3 +19,7 @@ path="src/examples/first_word.rs"
 [[bin]]
 name="strtok"
 path="src/examples/str_tok.rs"
+
+[[bin]]
+name="strsplit"
+path="src/examples/str_split.rs"
