@@ -22,3 +22,7 @@ path="src/ds/cow.rs"
 [[bin]]
 name="mutexguard"
 path="src/ds/mutex_guard.rs"
+
+[[bin]]
+name="ministring"
+path="src/ds/ministring.rs"
