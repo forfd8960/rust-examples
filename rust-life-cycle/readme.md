@@ -6,38 +6,13 @@
 
 ## cargo run strsplit
 
+* from: https://www.youtube.com/watch?v=rAl-9HwD858
+
 ```sh
 cargo run --bin strsplit
    Compiling rust-life-cycle v0.1.0
-warning: field is never read: `remain`
- --> src/examples/str_split.rs:3:5
-  |
-3 |     remain: Option<&'a str>,
-  |     ^^^^^^^^^^^^^^^^^^^^^^^
-  |
-  = note: `#[warn(dead_code)]` on by default
-note: `StrSplit` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
- --> src/examples/str_split.rs:1:10
-  |
-1 | #[derive(Debug)]
-  |          ^^^^^
-  = note: this warning originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
-
-warning: field is never read: `token`
- --> src/examples/str_split.rs:4:5
-  |
-4 |     token: TK
-  |     ^^^^^^^^^
-  |
-note: `StrSplit` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
- --> src/examples/str_split.rs:1:10
-  |
-1 | #[derive(Debug)]
-  |          ^^^^^
-  = note: this warning originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
-
-warning: `rust-life-cycle` (bin "strsplit") generated 2 warnings
-    Finished dev [unoptimized + debuginfo] target(s) in 0.75s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.71s
      Running `target/debug/strsplit`
-strsplit: StrSplit { remain: Some("hello, rust"), token: ',' }
+strsplit: StrSplit { remain: Some("hello, rust, and, good, morning"), token: ',' }
+words: ["hello", " rust", " and", " good", " morning"]
 ```

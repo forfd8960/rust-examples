@@ -16,8 +16,14 @@ impl<'a, TK> StrSplit<'a, TK> {
 impl<'a, TK> Iterator for StrSplit<'a, TK> where TK: Tokenier {
     type Item = &'a str;
     fn next(&mut self) -> Option<Self::Item> {
-        // let rm = self.remain.as_mut()?;
-        Some("")
+        let rm = self.remain.as_mut()?;
+        if let Some((tk_start, tk_end)) = self.token.find_next(rm) {
+            let until = &rm[..tk_start];
+            *rm = &rm[tk_end..];
+            Some(until)
+        } else {
+            self.remain.take()
+        }
     }
 }
 
@@ -33,7 +39,10 @@ impl Tokenier for char {
 
 
 fn main() {
-    let s = "hello, rust";
+    let s = "hello, rust, and, good, morning";
     let ss = StrSplit::new(&s, ',');
     println!("strsplit: {:?}", ss);
+    let words: Vec<_> = ss.collect();
+    println!("words: {:?}", words);
+    assert_eq!(words, vec!["hello", " rust", " and", " good", " morning"])
 }
