@@ -65,5 +65,20 @@ impl fmt::Display for MyString {
 
 
 fn main() {
+    let len1 = std::mem::size_of::<MyString>();
+    let len2 = std::mem::size_of::<MiniString>();
+    println!("len of MyString: {}, len of MiniString: {}", len1, len2);
 
+    let s1: MyString = "hello, world".into();
+    let s2: MyString = "这是一个非常长的很长的长长长长长长长长长的字符串".into();
+    println!("s1: {}, s2: {}", s1, s2);
+
+    println!(
+        "s1: {}({} bytes, {} chars), s2: {}({} bytes, {} chars)",
+        s1, s1.len(), s1.chars().count(),
+        s2, s2.len(), s2.chars().count(),
+    );
+
+    assert!(s1.ends_with("world"));
+    assert!(s2.starts_with("这"));
 }

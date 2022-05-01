@@ -66,3 +66,15 @@ cargo run --bin mutexguard
      Running `target/debug/mutexguard`
 metrics: {"hello": 32}
 ```
+
+### cargo run --bin ministring
+
+```sh
+cargo run --bin ministring
+   Compiling rust-ds v0.1.0
+    Finished dev [unoptimized + debuginfo] target(s) in 1.05s
+     Running `target/debug/ministring`
+len of MyString: 32, len of MiniString: 31
+s1: hello, world, s2: 这是一个非常长的很长的长长长长长长长长长的字符串
+s1: hello, world(12 bytes, 12 chars), s2: 这是一个非常长的很长的长长长长长长长长长的字符串(72 bytes, 24 chars)
+```
