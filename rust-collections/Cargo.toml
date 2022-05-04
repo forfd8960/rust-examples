@@ -10,3 +10,7 @@ edition = "2021"
 [[bin]]
 name="slice"
 path="examples/slice.rs"
+
+[[bin]]
+name="slicederef"
+path="examples/slice_deref.rs"
