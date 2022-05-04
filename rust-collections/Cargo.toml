@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+itertools="0.10.3"
 
 [[bin]]
 name="slice"
@@ -14,3 +15,11 @@ path="examples/slice.rs"
 [[bin]]
 name="slicederef"
 path="examples/slice_deref.rs"
+
+[[bin]]
+name="iterator"
+path="examples/iterator.rs"
+
+[[bin]]
+name="itertools"
+path="examples/itertools.rs"
