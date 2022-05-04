@@ -20,14 +20,17 @@ fn main() {
     print_slice1(&arr);
     print_slice1(&arr[..]);
     print_slice1(arr);
-
 }
 
 fn print_slice<T: fmt::Debug>(s: &[T]) {
     println!("{:?}", s);
 }
 
-// AsRef: auto-dereferences if the inner type is a reference or a mutable reference 
-fn print_slice1<T, U>(s: T) where T: AsRef<[U]>, U: fmt::Debug {
+// AsRef: auto-dereferences if the inner type is a reference or a mutable reference
+fn print_slice1<T, U>(s: T)
+where
+    T: AsRef<[U]>,
+    U: fmt::Debug,
+{
     println!("{:?}", s.as_ref());
 }

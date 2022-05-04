@@ -1,8 +1,8 @@
 use std::iter::FromIterator;
 
 fn main() {
-    let arr = ['h', 'e', 'l','l','o'];
-    let vec = vec!['h', 'e', 'l','l','o'];
+    let arr = ['h', 'e', 'l', 'l', 'o'];
+    let vec = vec!['h', 'e', 'l', 'l', 'o'];
     let s = String::from("hello");
 
     let s1 = &arr[1..3];

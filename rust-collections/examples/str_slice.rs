@@ -26,6 +26,10 @@ fn print_slice1<T: AsRef<str>>(s: T) {
     println!("{:?}", s.as_ref());
 }
 
-fn print_slice2<T, U>(s: T) where T: AsRef<[U]>, U: fmt::Debug {
+fn print_slice2<T, U>(s: T)
+where
+    T: AsRef<[U]>,
+    U: fmt::Debug,
+{
     println!("{:?}", s.as_ref());
 }
