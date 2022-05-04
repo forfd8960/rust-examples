@@ -23,3 +23,7 @@ path="examples/iterator.rs"
 [[bin]]
 name="itertools"
 path="examples/itertools.rs"
+
+[[bin]]
+name="strslice"
+path="examples/str_slice.rs"
