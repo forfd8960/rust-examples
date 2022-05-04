@@ -27,3 +27,7 @@ path="examples/itertools.rs"
 [[bin]]
 name="strslice"
 path="examples/str_slice.rs"
+
+[[bin]]
+name="charslice"
+path="examples/char_slice.rs"

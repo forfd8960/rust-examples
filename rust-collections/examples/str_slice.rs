@@ -2,6 +2,8 @@ use std::fmt;
 
 fn main() {
     let s = String::from("hello");
+
+    // String can be deref to &str
     print_slice(&s);
     print_slice(&s[..]); // &s[..] and s.as_str() => &str
 
