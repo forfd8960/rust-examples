@@ -31,3 +31,7 @@ path="examples/str_slice.rs"
 [[bin]]
 name="charslice"
 path="examples/char_slice.rs"
+
+[[bin]]
+name="boxslice"
+path="examples/box_slice.rs"

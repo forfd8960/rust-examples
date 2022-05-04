@@ -30,3 +30,10 @@ cargo run --bin slicederef
 [1, 2, 3, 6]
 [1, 2, 3, 6]
 ```
+
+## Box<T>
+
+当需要在堆上创建固定大小的集合数据， 且不希望自动增长，可以先创建 Vec<T>, 在装换为 Box<T>
+
+* `into_boxed_slice: Vec<T> convert to Box<T>`
+* `into_vec: Box<T> convert to Vec<T>`
