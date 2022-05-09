@@ -11,3 +11,11 @@ edition = "2021"
 [[bin]]
 name="closuresize"
 path="examples/closure_size.rs"
+
+[[bin]]
+name="fnonce"
+path="examples/fn_once.rs"
+
+[[bin]]
+name="fnonce1"
+path="examples/fn_once1.rs"
