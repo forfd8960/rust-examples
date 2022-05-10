@@ -19,3 +19,7 @@ path="examples/fn_once.rs"
 [[bin]]
 name="fnonce1"
 path="examples/fn_once1.rs"
+
+[[bin]]
+name="fnmut"
+path="examples/fn_mut.rs"
