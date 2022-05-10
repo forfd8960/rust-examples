@@ -23,3 +23,11 @@ path="examples/fn_once1.rs"
 [[bin]]
 name="fnmut"
 path="examples/fn_mut.rs"
+
+[[bin]]
+name="fn"
+path="examples/fn.rs"
+
+[[bin]]
+name="mul"
+path="examples/mul.rs"
