@@ -12,6 +12,14 @@ fn main() {
     let c = move |greeting: String| (greeting, name.clone());
     println!("call c 1st time: {:?}", c("first call".to_string()));
     println!("call c 2st time: {:?}", c("second call".to_string()));
+
+    println!("call fn c: {:?}", call_fn("callFn".into(), &c));
+
+    /*
+    borrow of moved value: `name`
+    value borrowed here after move
+    */
+    // println!("name: {}", name);
     
     // after called as FnOnce, can not be called again
     println!("call once: {:?}", call_once("once call".into(), c));
@@ -22,6 +30,10 @@ fn main() {
     // println!("call once: {:?}", c("HI".into()));
 
     println!("call FnOnce: {:?}", call_once("pass Fn as FnOnce".into(), not_closure));
+}
+
+fn call_fn(arg: String, c: &impl Fn(String) -> (String, String)) -> (String, String) {
+    c(arg)
 }
 
 fn call_once(arg: String, c: impl FnOnce(String) -> (String, String)) -> (String, String) {

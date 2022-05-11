@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package abi;
+
+message CommondRequest {
+    oneof request_data {
+        Hget hget = 1;
+        Hgetall hgetall = 2;
+    }
+}
+
+message CommandResponse {
+    uint32 status = 1;
+    string message = 2;
+    repeated Value values = 3;
+    repeated KVpair pairs = 4;
+}
+
+message Hget {
+    string table = 1;
+    string key = 2;
+}
+
+message Hgetall {
+    string table = 1;
+}
+
+message Value {
+    oneof value {
+        string string = 1;
+        bytes binary = 2;
+    }
+}
+
+message KVpair {
+    string key = 1;
+    Value value = 2;
+}
