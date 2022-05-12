@@ -37,8 +37,15 @@ pub struct Hgetall {
     pub table: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hmget {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag="2")]
+    pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
-    #[prost(oneof="value::Value", tags="1, 2")]
+    #[prost(oneof="value::Value", tags="1, 2, 3, 4, 5")]
     pub value: ::core::option::Option<value::Value>,
 }
 /// Nested message and enum types in `Value`.
@@ -49,6 +56,12 @@ pub mod value {
         String(::prost::alloc::string::String),
         #[prost(bytes, tag="2")]
         Binary(::prost::alloc::vec::Vec<u8>),
+        #[prost(int64, tag="3")]
+        Integer(i64),
+        #[prost(double, tag="4")]
+        Float(f64),
+        #[prost(bool, tag="5")]
+        Bool(bool),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -57,4 +70,46 @@ pub struct KVpair {
     pub key: ::prost::alloc::string::String,
     #[prost(message, optional, tag="2")]
     pub value: ::core::option::Option<Value>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hset {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub pairs: ::core::option::Option<KVpair>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hmset {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="2")]
+    pub pairs: ::prost::alloc::vec::Vec<KVpair>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hdel {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub key: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hmdel {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag="2")]
+    pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hexists {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub key: ::prost::alloc::string::String,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Hmexist {
+    #[prost(string, tag="1")]
+    pub table: ::prost::alloc::string::String,
+    #[prost(string, repeated, tag="2")]
+    pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
