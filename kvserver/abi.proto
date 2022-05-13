@@ -6,6 +6,13 @@ message CommondRequest {
     oneof request_data {
         Hget hget = 1;
         Hgetall hgetall = 2;
+        Hmget hmget = 3;
+        Hset hset = 4;
+        Hmset hmset = 5;
+        Hdel hdel = 6;
+        Hmdel hmdel = 7;
+        Hexists hexists = 8;
+        Hmexist hmexist = 9;
     }
 }
 

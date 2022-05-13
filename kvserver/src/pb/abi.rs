@@ -1,6 +1,6 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommondRequest {
-    #[prost(oneof="commond_request::RequestData", tags="1, 2")]
+    #[prost(oneof="commond_request::RequestData", tags="1, 2, 3, 4, 5, 6, 7, 8, 9")]
     pub request_data: ::core::option::Option<commond_request::RequestData>,
 }
 /// Nested message and enum types in `CommondRequest`.
@@ -11,6 +11,20 @@ pub mod commond_request {
         Hget(super::Hget),
         #[prost(message, tag="2")]
         Hgetall(super::Hgetall),
+        #[prost(message, tag="3")]
+        Hmget(super::Hmget),
+        #[prost(message, tag="4")]
+        Hset(super::Hset),
+        #[prost(message, tag="5")]
+        Hmset(super::Hmset),
+        #[prost(message, tag="6")]
+        Hdel(super::Hdel),
+        #[prost(message, tag="7")]
+        Hmdel(super::Hmdel),
+        #[prost(message, tag="8")]
+        Hexists(super::Hexists),
+        #[prost(message, tag="9")]
+        Hmexist(super::Hmexist),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
