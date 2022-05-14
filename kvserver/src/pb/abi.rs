@@ -1,3 +1,4 @@
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommondRequest {
     #[prost(oneof="commond_request::RequestData", tags="1, 2, 3, 4, 5, 6, 7, 8, 9")]
@@ -5,6 +6,7 @@ pub struct CommondRequest {
 }
 /// Nested message and enum types in `CommondRequest`.
 pub mod commond_request {
+    #[derive(PartialOrd)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum RequestData {
         #[prost(message, tag="1")]
@@ -27,6 +29,7 @@ pub mod commond_request {
         Hmexist(super::Hmexist),
     }
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CommandResponse {
     #[prost(uint32, tag="1")]
@@ -38,6 +41,7 @@ pub struct CommandResponse {
     #[prost(message, repeated, tag="4")]
     pub pairs: ::prost::alloc::vec::Vec<KVpair>,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hget {
     #[prost(string, tag="1")]
@@ -45,11 +49,13 @@ pub struct Hget {
     #[prost(string, tag="2")]
     pub key: ::prost::alloc::string::String,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hgetall {
     #[prost(string, tag="1")]
     pub table: ::prost::alloc::string::String,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hmget {
     #[prost(string, tag="1")]
@@ -57,6 +63,7 @@ pub struct Hmget {
     #[prost(string, repeated, tag="2")]
     pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Value {
     #[prost(oneof="value::Value", tags="1, 2, 3, 4, 5")]
@@ -64,12 +71,13 @@ pub struct Value {
 }
 /// Nested message and enum types in `Value`.
 pub mod value {
+    #[derive(PartialOrd)]
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Value {
         #[prost(string, tag="1")]
         String(::prost::alloc::string::String),
         #[prost(bytes, tag="2")]
-        Binary(::prost::alloc::vec::Vec<u8>),
+        Binary(::prost::bytes::Bytes),
         #[prost(int64, tag="3")]
         Integer(i64),
         #[prost(double, tag="4")]
@@ -78,6 +86,7 @@ pub mod value {
         Bool(bool),
     }
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct KVpair {
     #[prost(string, tag="1")]
@@ -85,6 +94,7 @@ pub struct KVpair {
     #[prost(message, optional, tag="2")]
     pub value: ::core::option::Option<Value>,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hset {
     #[prost(string, tag="1")]
@@ -92,6 +102,7 @@ pub struct Hset {
     #[prost(message, optional, tag="2")]
     pub pairs: ::core::option::Option<KVpair>,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hmset {
     #[prost(string, tag="1")]
@@ -99,6 +110,7 @@ pub struct Hmset {
     #[prost(message, repeated, tag="2")]
     pub pairs: ::prost::alloc::vec::Vec<KVpair>,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hdel {
     #[prost(string, tag="1")]
@@ -106,6 +118,7 @@ pub struct Hdel {
     #[prost(string, tag="2")]
     pub key: ::prost::alloc::string::String,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hmdel {
     #[prost(string, tag="1")]
@@ -113,6 +126,7 @@ pub struct Hmdel {
     #[prost(string, repeated, tag="2")]
     pub keys: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hexists {
     #[prost(string, tag="1")]
@@ -120,6 +134,7 @@ pub struct Hexists {
     #[prost(string, tag="2")]
     pub key: ::prost::alloc::string::String,
 }
+#[derive(PartialOrd)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Hmexist {
     #[prost(string, tag="1")]
