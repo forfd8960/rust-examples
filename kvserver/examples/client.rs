@@ -1,6 +1,6 @@
 use anyhow::Result;
 use async_prost::AsyncProstStream;
-use futures::{Sink, SinkExt, Stream, StreamExt};
+use futures::prelude::*;
 use tokio::{
     net::TcpStream,
 };

@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 anyhow="1"
+thiserror = "1.0"
 async-prost = "0.2.1"
 futures = "0.3"
 bytes = "1.1.0"
@@ -25,6 +26,7 @@ path="examples/dummy_server.rs"
 
 [dev-dependencies]
 anyhow="1"
+thiserror = "1.0"
 async-prost = "0.2.1"
 futures = "0.3"
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "io-util", "macros", "net" ] }
