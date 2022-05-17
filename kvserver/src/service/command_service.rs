@@ -1,4 +1,5 @@
 use crate::*;
+use http::StatusCode;
 
 impl CommandService for Hget {
     fn execute(self, store: &impl Storage) -> CommandResponse {
@@ -31,6 +32,37 @@ impl CommandService for Hset {
            None => Value::default().into(),
        }
 
+    }
+}
+
+impl From<Value> for CommandResponse {
+    fn from(v: Value) -> Self {
+        Self { status: StatusCode::OK.as_u16() as _,  values: vec![v], ..Default::default() }
+    }
+}
+
+impl From<Vec<KVpair>> for CommandResponse {
+    fn from(v: Vec<KVpair>) -> Self {
+        Self { status: StatusCode::OK.as_u16() as _,  pairs: v, ..Default::default() }
+    }
+}
+
+impl From<KvError> for CommandResponse {
+    fn from(e: KvError) -> Self {
+        let mut result = Self { 
+            status: StatusCode::INTERNAL_SERVER_ERROR.as_u16() as _,
+            message: e.to_string(),
+            pairs: vec![],
+            values: vec![],
+        };
+
+        match e {
+            KvError::NotFound(_, _) => result.status = StatusCode::NOT_FOUND.as_u16() as _,
+            KvError::InvalidCommand(_) => result.status = StatusCode::BAD_REQUEST.as_u16() as _,
+            _ => {}
+        }
+
+        result
     }
 }
 
