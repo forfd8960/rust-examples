@@ -68,8 +68,9 @@ impl From<KvError> for CommandResponse {
 
 #[cfg(test)]
 mod tests {
+    use crate::service::{assert_res_ok, assert_res_error};
+
     use super::*;
-    use crate::commond_request::RequestData;
 
     #[test]
     fn hset_should_work() {
@@ -89,6 +90,14 @@ mod tests {
         let get_cmd = CommondRequest::new_hget("score", "s1");
         let res = dispatch(get_cmd, &store);
         assert_res_ok(res, &[10.into()], &[]);
+    }
+
+    #[test]
+    fn hget_with_non_exists_key() {
+        let store = MemTable::new();
+        let cmd = CommondRequest::new_hget("score", "ux");
+        let res = dispatch(cmd, &store);
+        assert_res_error(res, 404, "Not found");
     }
     
     #[test]
@@ -113,14 +122,6 @@ mod tests {
             KVpair::new("s3", 9.into()),
         ];
         assert_res_ok(res, &[], pairs);
-    }
-
-    fn assert_res_ok(mut res: CommandResponse, values: &[Value], pairs: &[KVpair]) {
-        res.pairs.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        assert_eq!(res.status, 200);
-        assert_eq!(res.message, "");
-        assert_eq!(res.values, values);
-        assert_eq!(res.pairs, pairs);
     }
 }
 
