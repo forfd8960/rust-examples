@@ -16,7 +16,7 @@ async fn main() -> Result<()> {
 
     let mut client = AsyncProstStream::<_, CommandResponse, CommondRequest, _>::from(stream).for_async();
 
-    let cmd = CommondRequest::new_hset("table1", "hello", "world".into());
+    let cmd = CommondRequest::new_hgetall("table1");
 
     client.send(cmd).await?;
     if let Some(Ok(data)) = client.next().await {

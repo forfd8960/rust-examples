@@ -4,12 +4,16 @@ use futures::prelude::*;
 use tokio::{
     net::TcpListener,
 };
-use kvserver::{CommondRequest, CommandResponse};
+use kvserver::{CommondRequest, CommandResponse, Service, MemTable};
 use tracing::info;
 
 #[tokio::main]
 async fn main() -> Result<()>{
     tracing_subscriber::fmt::init();
+
+    let service = Service::new(MemTable::new());
+
+
 
     let addr = "127.0.0.1:9527";
     let listener = TcpListener::bind(addr).await?;
@@ -19,14 +23,14 @@ async fn main() -> Result<()>{
         let (tcp_stream, addr) = listener.accept().await?;
         info!("client: {} connected", addr);
 
+        let svc = service.clone();
+
         tokio::spawn(async move {
             let mut stream = AsyncProstStream::<_, CommondRequest, CommandResponse, _>::from(tcp_stream).for_async();
-            while let Some(Ok(msg)) = stream.next().await {
-                info!("got a new command: {:?}", msg);
+            while let Some(Ok(cmd)) = stream.next().await {
+                info!("got a new command: {:?}", cmd);
 
-                let mut resp = CommandResponse::default();
-                resp.status = 404;
-                resp.message = "Not Found".to_string();
+                let resp = svc.execute(cmd);
                 stream.send(resp).await.unwrap();
             }
             info!("client disconnected: {}", addr);
