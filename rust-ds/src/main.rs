@@ -1,3 +1,5 @@
+mod ds;
+
 #[derive(Debug)]
 enum Gender {
     Unspecified = 0,
@@ -47,6 +49,9 @@ fn process_message(event: &Event) {
 }
 
 fn main() {
+    let data = ds::ministring::Data{name: "Hello".into()};
+    println!("ministring::Data: {:?}", data);
+
     let alice = User {
         id: UserId(1),
         name: "Alice".into(),

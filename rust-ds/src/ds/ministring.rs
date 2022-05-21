@@ -2,8 +2,13 @@ use std::{fmt, ops::Deref, str};
 
 const MINI_STRING_MAX_LEN: usize = 30;
 struct MiniString {
-    len: u8,
-    data: [u8; MINI_STRING_MAX_LEN],
+    pub len: u8,
+    pub data: [u8; MINI_STRING_MAX_LEN],
+}
+
+#[derive(Debug)]
+pub struct Data {
+    pub name: String, 
 }
 
 impl MiniString {
