@@ -1,1 +1,3 @@
-pub mod findlines;
+mod findlines;
+
+pub use findlines::*;

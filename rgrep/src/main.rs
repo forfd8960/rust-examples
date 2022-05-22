@@ -1,7 +1,7 @@
 mod check;
 
 use structopt::StructOpt;
-use check::findlines;
+use check::*;
 
 #[derive(Debug, StructOpt)]
 #[structopt(name="line_match", about="get the text matched with the pattern")]
@@ -17,6 +17,6 @@ fn main() {
     let opt = Opt::from_args();
     println!("{:?}", opt);
     
-    let q = findlines::Query::new("abc".into(), "test.txt".into());
+    let q = Query::new("abc".into(), "test.txt".into());
     println!("q: {:?}", q);
 }
