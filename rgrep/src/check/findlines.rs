@@ -26,7 +26,9 @@ impl Match for Query {
 
         let mut value: Vec<String> = Vec::new();
         for line in lines {
-            value.push(String::from(line));
+            if line.contains(&self.pattern) {
+                value.push(String::from(line));
+            }
         }
         m.insert(self.file_name.clone(), value);
 
@@ -40,9 +42,10 @@ mod tests {
 
     #[test]
     fn test_get_matched_lines() {
-        let f = String::from("test.txt");
+        println!("current path: {:?}", std::env::current_dir());
+        let f = String::from("src/test.txt");
         let file = f.clone();
-        let q = Query::new("abc".into(), f);
+        let q = Query::new("Hello".into(), f);
         let result = match q.get_matched_lines() {
             Ok(v) => v,
             Err(e) => {
@@ -54,9 +57,8 @@ mod tests {
 
         let mut expect_result: HashMap<String, Vec<String>> = HashMap::new();
         let lines : Vec<String>  = vec![
-            "abc".into(),
-            "test".into(),
-            "xyz".into(),
+            "Hello, abc".into(),
+            "Time, Hello".into(),
         ];
         expect_result.insert(file, lines);
         assert_eq!(result, expect_result);
