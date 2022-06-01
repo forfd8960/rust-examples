@@ -26,4 +26,11 @@ pub fn dispatch<Store: Storage>(cmd: CommandRequest, store: &Store) -> CommandRe
 
 * Use generic parameters and PhantomData to declare types that are not directly used in the data structure, but need to be used in the implementation process.
 
+```rust
+pub struct Ident<T> {
+    inner: u64,
+    _tag: PhantomData<T>,
+}
+```
+
 * Use generic parameters to allow the same data structure to have different implementations of the same trait.
