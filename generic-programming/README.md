@@ -34,3 +34,31 @@ pub struct Ident<T> {
 ```
 
 * Use generic parameters to allow the same data structure to have different implementations of the same trait.
+
+```rust
+impl Iterator for Equation<Liner> {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.current += 1;
+        if self.current >= u32::MAX {
+            return None
+        }
+
+        Some(self.current)
+    }
+}
+
+impl Iterator for Equation<Quadratic> {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.current += 1;
+        if self.current >= u16::MAX as u32 {
+            return None
+        }
+
+        Some(self.current * self.current)
+    }
+}
+```
