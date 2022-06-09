@@ -62,3 +62,34 @@ impl Iterator for Equation<Quadratic> {
     }
 }
 ```
+
+* Generric function
+
+1. Return value is a genric type
+
+```rust
+pub trait Storage {
+
+    //
+    fn get_iter() -> Result<Box<dyn Iterator<Item = KvPair>>, KvError>
+}
+
+pub fn trait_object_as_return(i: u32) -> Box<dyn Iterator<Item = u32>> {
+    Box::new(std::iter::once(i))
+}
+```
+
+2. Handler complex genric arguments.
+
+```rust
+pub fn consume_iterator<F, Iter, T>(mut f: F)
+where
+    F: FnMut(i32) -> iter,
+    Iter: Iterator<Item = T>,
+    T: std::fmt::debug,
+{
+    for item in f(10) {
+        println("{:?}", item);
+    }
+}
+``'
