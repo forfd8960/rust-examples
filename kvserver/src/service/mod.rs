@@ -19,13 +19,15 @@ pub fn dispatch(cmd: CommondRequest, store: &impl Storage) -> CommandResponse {
     }
 }
 
-pub struct Service<Store = MemTable> {
-    inner: Arc<ServiceInner<Store>>,
+pub struct Service {
+    pub store: Arc<dyn Storage>,
 }
 
-impl<Store> Clone for Service<Store> {
+impl Clone for Service {
     fn clone(&self) -> Self {
-        Self { inner: Arc::clone(&self.inner) }
+        Self { 
+            store: Arc::clone(&self.store),
+        }
     }
 }
 
@@ -33,15 +35,17 @@ pub struct ServiceInner<Store> {
     store: Store,
 }
 
-impl<Store: Storage> Service<Store> {
-    pub fn new(store: Store) -> Self {
-        Self { inner:Arc::new(ServiceInner {store}) }
+impl Service {
+    pub fn new<S: Storage>(store: S) -> Self {
+        Self { 
+            store: Arc::new(store),
+         }
     }
 
     pub fn execute(&self, cmd: CommondRequest) -> CommandResponse {
         debug!("got request: {:?}", cmd);
 
-        let res = dispatch(cmd, &self.inner.store);
+        let res = dispatch(cmd, &self.store);
         debug!("response: {:?}", res);
 
         res

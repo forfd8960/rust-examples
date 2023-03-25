@@ -1,9 +1,10 @@
-use crate::{KVpair, KvError, Value};
+use crate::{Value, KvError, KVpair};
 
 mod memory;
 pub use memory::MemTable;
 
-pub trait Storage {
+
+pub trait Storage: Send + Sync + 'static {
     fn get(&self, table: &str, key: &str) -> Result<Option<Value>, KvError>;
     fn set(&self, table: &str, key: String, value: Value) -> Result<Option<Value>, KvError>;
     fn contains(&self, table: &str, key: &str) -> Result<bool, KvError>;
@@ -11,6 +12,7 @@ pub trait Storage {
     fn get_all(&self, table: &str) -> Result<Vec<KVpair>, KvError>;
     fn get_iter(&self, table: &str) -> Result<Box<dyn Iterator<Item = KVpair>>, KvError>;
 }
+
 
 #[cfg(test)]
 mod tests {
@@ -28,11 +30,11 @@ mod tests {
         test_get_all(store);
     }
 
-    //#[test]
-    // fn memtable_get_iter_should_work() {
-    //     let store = MemTable::new();
-    //     test_get_iter(store);
-    // }
+    #[test]
+    fn memtable_get_iter_should_work() {
+        let store = MemTable::new();
+        test_get_iter(store);
+    }
 
     fn test_basi_interface(store: impl Storage) {
         let v = store.set("t1", "hello".into(), "kv".into());
@@ -73,19 +75,19 @@ mod tests {
         )
     }
 
-    // fn test_get_iter(store: impl Storage) {
-    //     store.set("t2", "k1".into(), "v1".into()).unwrap();
-    //     store.set("t2", "k2".into(), "v2".into()).unwrap();
+    fn test_get_iter(store: impl Storage) {
+        store.set("t2", "k1".into(), "v1".into()).unwrap();
+        store.set("t2", "k2".into(), "v2".into()).unwrap();
 
-    //     let mut data: Vec<_> = store.get_iter("t2").unwrap().collect();
-    //     data.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let mut data: Vec<_> = store.get_iter("t2").unwrap().collect();
+        data.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
-    //     assert_eq!(
-    //         data,
-    //         vec![
-    //             KVpair::new("k1", "v1".into()),
-    //             KVpair::new("k2", "v2".into())
-    //         ]
-    //     )
-    // }
+        assert_eq!(
+            data,
+            vec![
+                KVpair::new("k1", "v1".into()),
+                KVpair::new("k2", "v2".into())
+            ]
+        )
+    }
 }
