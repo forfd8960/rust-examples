@@ -14,3 +14,15 @@ path="examples/box.rs"
 [[bin]]
 name="conslist"
 path="examples/cons_list.rs"
+
+[[bin]]
+name="cowtest"
+path="examples/cow.rs"
+
+[[bin]]
+name="threadtest"
+path="examples/thread.rs"
+
+[[bin]]
+name="movetest"
+path="examples/move_to_thread.rs"

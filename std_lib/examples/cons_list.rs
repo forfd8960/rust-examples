@@ -7,7 +7,6 @@ enum List {
     Nil,
 }
 
-// error[E0072]: recursive type `List` has infinite size
 fn main() {
     let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
     println!("list: {:?}", list);
