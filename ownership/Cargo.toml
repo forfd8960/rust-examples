@@ -19,3 +19,7 @@ path="examples/push_str.rs"
 [[bin]]
 name="borrow"
 path="examples/borrow.rs"
+
+[[bin]]
+name="strslice"
+path="examples/slice.rs"
