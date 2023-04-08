@@ -23,3 +23,11 @@ path="examples/borrow.rs"
 [[bin]]
 name="strslice"
 path="examples/slice.rs"
+
+[[bin]]
+name="mutref"
+path="examples/mut_ref.rs"
+
+[[bin]]
+name="brwpat"
+path="examples/brw_pattern.rs"
