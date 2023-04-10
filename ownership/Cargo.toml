@@ -31,3 +31,15 @@ path="examples/mut_ref.rs"
 [[bin]]
 name="brwpat"
 path="examples/brw_pattern.rs"
+
+[[bin]]
+name="tempvar"
+path="examples/temp_variable.rs"
+
+[[bin]]
+name="wordcount"
+path="examples/entry_api.rs"
+
+[[bin]]
+name="splitstruct"
+path="examples/split_struct.rs"
